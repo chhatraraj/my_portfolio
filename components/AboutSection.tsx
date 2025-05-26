@@ -16,7 +16,7 @@ const AboutSection = () => {
             About Me
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            I'm a passionate engineer with a creative mindset and a strong eye for detail, specializing in crafting smooth, user-friendly interfaces. I enjoy turning complex ideas into clean, responsive web applications. With strong problem-solving skills and a love for innovation, I'm constantly seeking ways to build meaningful digital experiences that make a real impact.
+            I&apos;m a passionate engineer with a creative mindset and a strong eye for detail, specializing in crafting smooth, user-friendly interfaces. I enjoy turning complex ideas into clean, responsive web applications. With strong problem-solving skills and a love for innovation, I&apos;m constantly seeking ways to build meaningful digital experiences that make a real impact.
           </p>
         </motion.div>
       </div>

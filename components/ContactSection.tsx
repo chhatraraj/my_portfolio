@@ -22,10 +22,11 @@ export default function ContactWithFooter() {
       toast.error('Please fill in all fields.', {
         position: 'top-center',
         style: {
-          backgroundColor: 'gray',
+          backgroundColor: 'black',
           color: '#ffffff',
           fontWeight: 'bold',
           borderRadius: '8px',
+          fontSize: '12px',
         },
       });
       return;
@@ -71,7 +72,7 @@ export default function ContactWithFooter() {
               Get in Touch
             </h2>
             <p className="mb-8 text-gray-300 text-sm md:text-base">
-              Have a project in mind or just want to say hello? Fill out the form and I'll get back to you soon.
+              Have a project in mind or just want to say hello? Fill out the form and I&apos;ll get back to you soon.
             </p>
 
             <form ref={form} onSubmit={handleSubmit} className="space-y-6 bg-gray-900 p-6 rounded-lg shadow-lg">

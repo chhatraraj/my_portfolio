@@ -6,7 +6,7 @@ import {
   CardBody,
 } from "@nextui-org/react";
 import { FaReact, FaNodeJs, FaTools } from "react-icons/fa";
-import { SiNextdotjs, SiTailwindcss, SiTypescript, SiPrisma } from "react-icons/si";
+import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { motion } from "framer-motion";
 
 const SkillsSection = () => {
