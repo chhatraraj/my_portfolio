@@ -1,65 +1,119 @@
 # My Portfolio
 
-A modern and responsive personal portfolio website showcasing my skills and projects.
+Modern, responsive personal portfolio built with React.js (Vite). It showcases skills, projects, and contact information with a clean UI, smooth animations, and fast loading.
 
 ## Features
 
-- Responsive design
-- Dark and Light mode toggle
-- Smooth scrolling navigation
-- Sections for Hero, About, Skills, Projects, and Contact
-- Project cards with details and links
-- Downloadable CV
+- Responsive, accessible design
+- Dark/Light mode toggle
+- Smooth scrolling between sections
+- Sections: Hero, About, Skills, Projects, Contact
+- Project cards with links to live demos and repositories
+- Downloadable resume/CV
+- Smooth page loader and motion transitions
 
-## Technologies Used
+## Tech Stack
 
-- Next.js
-- React
+- React (Vite + TypeScript)
 - Tailwind CSS
-- Framer Motion (for animations)
-- React Icons
+- Framer Motion (animations)
+- React Icons / Lucide Icons
 
-## Setup
+## Getting Started
 
-1. Clone the repository:
-
+1. Clone the repository
    ```bash
    git clone https://github.com/chhatraraj/my_portfolio.git
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
    cd my_portfolio
    ```
 
-3. Install dependencies:
-
+2. Install dependencies
    ```bash
    npm install
+   # or
+   pnpm install
+   # or
+   yarn
    ```
 
-4. Run the development server:
-
+3. Run the development server
    ```bash
    npm run dev
    ```
+   Open `http://localhost:5173` in your browser (Vite default).
 
-5. Open your browser and visit `http://localhost:3000`.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `dev`: Start local development server
+- `build`: Create production build
+- `preview`: Preview the production build locally
 
-## Learn More
+```bash
+npm run dev
+npm run build
+npm run preview
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+my_portfolio/
+├─ index.html            # Vite entry
+├─ src/
+│  ├─ main.tsx          # React entry
+│  ├─ root.tsx          # App composition
+│  ├─ globals.css       # Global styles
+│  └─ smoothScroll.ts   # Utility for smooth scrolling
+├─ components/          # Reusable UI components
+├─ providers/           # Context providers (e.g., ThemeProvider)
+├─ lib/                 # Utilities/helpers
+├─ public/              # Static assets (images, icons)
+├─ tailwind.config.js   # Tailwind configuration
+├─ vite.config.ts       # Vite configuration
+└─ README.md
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Your structure may vary slightly depending on how components and sections are organized.
 
-## Deploy on Vercel
+## Configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Tailwind: Ensure `tailwind.config.js` includes the correct `content` paths for `index.html`, `src`, and `components`.
+- Environment variables (optional): Create `.env` or `.env.local` for any keys (e.g., analytics) and never commit it.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Development Tips
+
+- Keep images optimized in `public/` to improve load time.
+- Prefer CSS transitions/Framer Motion variants that are performant (opacity/transform).
+- Use lazy-loading for heavy images or sections when appropriate.
+- Reuse components and leverage Tailwind utility classes for consistency.
+
+## Deployment
+
+You can deploy the Vite build output (`dist/`) to any static host:
+
+- Vercel
+- Netlify
+- GitHub Pages
+- Cloudflare Pages
+
+Build and preview locally:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Roadmap
+
+- Add more detailed project case studies
+- Add blog/notes section
+- Integrate analytics
+- Improve Lighthouse scores further
+
+## License
+
+This project is licensed under the MIT License. See `LICENSE` for details.
+
+## Contact
+
+If you’d like to get in touch, feel free to open an issue or reach out via the contact section on the site.

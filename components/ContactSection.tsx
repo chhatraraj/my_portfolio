@@ -1,5 +1,3 @@
-'use client';
-
 import { useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
 import { toast } from 'sonner';
@@ -7,7 +5,7 @@ import { FaEnvelope, FaUser, FaPaperPlane, FaGithub, FaLinkedin } from 'react-ic
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+
 
 export default function ContactWithFooter() {
   const form = useRef<HTMLFormElement>(null);
@@ -65,7 +63,7 @@ export default function ContactWithFooter() {
   return (
     <>
       <section id="contact" className="w-full py-16 md:py-24 lg:py-32 bg-black text-white">
-        <div className="container px-4 md:px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container max-w-7xl mx-auto px-4 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Form Section */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-700 to-gray-300 text-transparent bg-clip-text">
@@ -161,20 +159,8 @@ export default function ContactWithFooter() {
           &copy; {new Date().getFullYear()} Chhatra Neupane. All rights reserved.
         </p>
         <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link 
-            href="#" 
-            className="text-xs hover:underline underline-offset-4 text-gray-400 hover:text-white transition-colors" 
-            prefetch={false}
-          >
-            Privacy
-          </Link>
-          <Link 
-            href="#" 
-            className="text-xs hover:underline underline-offset-4 text-gray-400 hover:text-white transition-colors" 
-            prefetch={false}
-          >
-            Terms of Service
-          </Link>
+          <a href="#" className="text-xs hover:underline underline-offset-4 text-gray-400 hover:text-white transition-colors">Privacy</a>
+          <a href="#" className="text-xs hover:underline underline-offset-4 text-gray-400 hover:text-white transition-colors">Terms of Service</a>
         </nav>
       </footer>
     </>

@@ -1,11 +1,9 @@
-"use client";
-
-import React, { FC } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { HiEye } from 'react-icons/hi2';
-import { FaGithub } from 'react-icons/fa';
+import React, { FC, useState } from "react";
+import { motion } from "framer-motion";
+import { HiEye } from "react-icons/hi2";
+import { FaGithub } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
+import Starfield from "./Starfield";
 
 interface ProjectInterface {
   id: number;
@@ -17,40 +15,52 @@ interface ProjectInterface {
   techStack?: string[];
 }
 
-const ProjectCard: FC<ProjectInterface> = ({
-  title,
-  description,
-  image,
-  previewLink,
-  githubLink,
-  techStack,
-}) => {
+const ProjectCard: FC<{
+  project: ProjectInterface;
+  onImageClick: (image: string, title: string) => void;
+}> = ({ project, onImageClick }) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.03 }}
+      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 300 }}
+      transition={{ type: "spring", stiffness: 200, damping: 18 }}
+      className="group"
     >
-      <div className="flex flex-col justify-between overflow-hidden shadow-lg rounded-2xl hover:shadow-2xl transition duration-300 bg-white dark:bg-neutral-900">
-        <div className="relative w-full h-52">
-          <Image
-            src={image}
-            alt={`${title} screenshot`}
-            fill
-            className="object-cover rounded-xl"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
+      <motion.div 
+        className="project-card flex flex-col justify-between overflow-hidden rounded-2xl transition duration-300 border border-white/10 bg-white/5 dark:bg-white/10 backdrop-blur-md shadow-[0_8px_30px_rgb(2_6_23_/_0.45)]"
+      >
+        
+        {/* Project Image */}
+        <div
+          className="relative w-full h-53 overflow-hidden cursor-pointer"
+          onClick={() => onImageClick(project.image, project.title)}
+        >
+          <img
+            src={project.image}
+            alt={`${project.title} screenshot`}
+            className="object-cover rounded-xl w-full h-full transform transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
           />
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all"></div>
         </div>
-        <div className="flex-grow space-y-2 p-4">
-          <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
-          <p className="text-muted-foreground">{description}</p>
-          {techStack && techStack.length > 0 && (
+
+        {/* Project Content */}
+        <div className="flex-grow space-y-3 p-5">
+          <h3 className="text-xl font-semibold tracking-tight bg-gradient-to-r from-red-400 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+            {project.title}
+          </h3>
+          <p className="text-gray-300/90 text-sm leading-relaxed">{project.description}</p>
+
+          {/* Tech Stack */}
+          {project.techStack && project.techStack.length > 0 && (
             <div>
-              <h4 className="text-sm mt-4 font-medium text-muted-foreground">Tech Stack</h4>
+              <h4 className="text-sm mt-4 font-medium text-gray-400">Tech Stack</h4>
               <div className="flex flex-wrap gap-2 mt-2">
-                {techStack.map((tech, index) => (
-                  <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                {project.techStack.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-indigo-600/20 via-pink-500/20 to-cyan-500/20 border border-white/10 text-gray-300 shadow-[0_0_8px_rgba(255,255,255,0.1)]"
+                  >
                     {tech}
                   </span>
                 ))}
@@ -58,79 +68,101 @@ const ProjectCard: FC<ProjectInterface> = ({
             </div>
           )}
         </div>
-        <div className="flex gap-3 px-4 pb-4">
-          {previewLink && (
-            <Link
-              href={previewLink}
+
+        {/* Action Buttons */}
+        <div className="flex gap-3 px-5 pb-5">
+          {project.previewLink && (
+            <a
+              href={project.previewLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium bg-primary text-primary-foreground px-4 py-1.5 rounded-md hover:bg-primary/90"
+              className="inline-flex items-center gap-2 text-sm font-medium bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-md shadow-md hover:scale-105 transition-all duration-300"
             >
               Live Demo <HiEye className="text-lg" />
-            </Link>
+            </a>
           )}
-          {githubLink && (
-            <Link
-              href={githubLink}
+          {project.githubLink && (
+            <a
+              href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium border border-input px-4 py-1.5 rounded-md hover:bg-accent hover:text-accent-foreground"
+              className="inline-flex items-center gap-2 text-sm font-medium border border-gray-600 px-4 py-2 rounded-md text-gray-300 hover:bg-gray-800 hover:scale-105 transition-all duration-300"
             >
               GitHub <FaGithub className="text-lg" />
-            </Link>
+            </a>
           )}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
 
 const ProjectsSection = () => {
+  const handleImageClick = (image: string, title: string) => {};
+
   const projects: ProjectInterface[] = [
+    
+    
     {
       id: 1,
-      title: 'Task Manager App',
-      description: 'Helps users manage tasks, deadlines, and productivity.',
-      image: '/1.png',
-      previewLink: 'https://your-link',
-      githubLink: 'https://github.com',
-      techStack: ['React', 'Next.js', 'MongoDB', 'Tailwind', 'AWS'],
+      title: "E-Commerce Website 🛒",
+      description: "A full-featured e-commerce website with shopping cart and payments.",
+      image: "/projects/ecommerce.png",
+      previewLink: "https://shop-ease-ecommerce-smoky.vercel.app",
+      githubLink: "https://github.com/chhatraraj/ShopEase-Ecommerce",
+      techStack: ["React", "Sanity CMS", "Stripe", "Tailwind CSS"],
     },
     {
       id: 2,
-      title: 'Real-Time Chat',
-      description: 'A chat app with WebSocket-powered real-time communication.',
-      image: '/2.jpg',
-      githubLink: 'https://github.com/chhatraraj/chat-app',
-      techStack: ['Vue', 'Firebase', 'Tailwind'],
+      title: "Employee Management System",
+      description: "A real-time employee management system.",
+      image: "/projects/employee.png",
+      // previewLink: "https://employee-management-system-six-tau.vercel.app/login",
+      
+      previewLink: "https://employee-management-system-six-tau.vercel.app",
+      githubLink: "https://github.com/chhatraraj/employee-management-system",
+      techStack: ["React", "localhost", "Tailwind CSS"],
     },
     {
       id: 3,
-      title: 'E-Commerce Dashboard',
-      description: 'Admin dashboard for managing products and orders.',
-      image: '/3.jpg',
-      previewLink: 'https://ecommerce-dashboard.vercel.app',
-      techStack: ['Angular', 'NestJS', 'MongoDB'],
+      title: "job Portal Website 🌐",
+      description: "My personal portfolio website built with React, Tailwind, and Framer Motion.",
+      image: "/projects/portfolio.png",
+      previewLink: "https://chhatra-portfolio.vercel.app",
+      githubLink: "https://github.com/chhatraraj/portfolio",
+      techStack: ["React", "Tailwind CSS", "Shadcn"],
     },
   ];
 
   return (
-    <section id="projects" className="w-full py-16 bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-      <div className="container px-4 md:px-6 mx-auto">
+    <section
+      id="projects"
+      className="relative w-full py-16 md:py-24 bg-black text-white overflow-hidden"
+    >
+      <Starfield className="pointer-events-none absolute inset-0 -z-10" opacity={0.35} starCount={800} depth={600} />
+
+      {/* Section Header */}
+      <div className="container px-4 md:px-6 mx-auto relative">
         <div className="text-center space-y-2 mb-10">
-          <h2 className="text-4xl font-bold tracking-tight">✨ Featured Projects</h2>
-          <p className="text-gray-300 text-lg">
-            A selection of projects that highlight my development skills and interests.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Projects</h2>
+          <p className="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">Selected work highlighting clean UX, performance, and maintainable code.</p>
         </div>
+
+        {/* Project Cards */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <ProjectCard key={project.id} {...project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onImageClick={handleImageClick}
+            />
           ))}
         </div>
       </div>
+
+      {/* Modal removed for simplicity */}
     </section>
   );
 };
 
-export default ProjectsSection; 
+export default ProjectsSection;
