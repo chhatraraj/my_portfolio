@@ -73,42 +73,6 @@ my_portfolio/
 └─ README.md
 ```
 
-Your structure may vary slightly depending on how components and sections are organized.
-
-## Configuration
-
-- Tailwind: Ensure `tailwind.config.js` includes the correct `content` paths for `index.html`, `src`, and `components`.
-- Environment variables (optional): Create `.env` or `.env.local` for any keys (e.g., analytics) and never commit it.
-
-## Development Tips
-
-- Keep images optimized in `public/` to improve load time.
-- Prefer CSS transitions/Framer Motion variants that are performant (opacity/transform).
-- Use lazy-loading for heavy images or sections when appropriate.
-- Reuse components and leverage Tailwind utility classes for consistency.
-
-## Deployment
-
-You can deploy the Vite build output (`dist/`) to any static host:
-
-- Vercel
-- Netlify
-- GitHub Pages
-- Cloudflare Pages
-
-Build and preview locally:
-
-```bash
-npm run build
-npm run preview
-```
-
-## Roadmap
-
-- Add more detailed project case studies
-- Add blog/notes section
-- Integrate analytics
-- Improve Lighthouse scores further
 
 ## License
 
