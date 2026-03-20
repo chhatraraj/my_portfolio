@@ -1,217 +1,153 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { FaReact, FaNodeJs, FaAward, FaClock, FaProjectDiagram, FaGitAlt, FaDocker, FaFigma } from "react-icons/fa";
-import { SiNextdotjs, SiPostman, SiGithub } from "react-icons/si";
-import Starfield from "./Starfield";
 
 const skillsData = [
   {
-    title: "Frontend Development",
-    icon: <FaReact className="text-4xl text-cyan-400" />,
-    iconBg: "bg-cyan-500/20",
-    experience: "2+ Years",
-    expertise: 50,
-    items: [
-      { name: "React.js", level: 65, projects: 5 },
-      { name: "Next.js", level: 53, projects: 1 },
-      { name: "JavaScript ES6+", level: 67, projects: 7 },
-      { name: "ShadCn", level: 49, projects: 1},
-      { name: "Tailwind CSS", level: 77, projects: 7}
-    ],
-    achievements: [
-      "React 30 day Certification ",
-      "3+ React Apps Deployed",
-    ]
+    category: "LANGUAGES",
+    items: ["Python", "JavaScript", "TypeScript",  "SQL", ]
+  },
+   {
+    category: "BACKEND",
+    items: ["Node.js", "Flask", "Django", "PostgreSQL", "MongoDB"]
+  },
+   {
+    category: "Frontend ",
+    items: ["React", "Next.js", "Shadcn", "Tailwind CSS"]
   },
   {
-    title: "Backend Development",
-    icon: <FaNodeJs className="text-4xl text-green-400" />,
-    iconBg: "bg-green-500/20",
-    experience: "1+ Years",
-    
-    expertise: 65,
-    items: [
-      { name: "Node.js", level: 65, projects: 3 },
-      { name: "Django", level: 61, projects: 2 },
-      { name: "Express.js", level: 78, projects: 3 },
-      { name: "MongoDB", level: 75, projects: 3 },
-      { name: "PostgreSQL", level: 52, projects: 3 },
-      { name: "RESTful APIs", level: 77, projects: 5 }
-    ],
-    achievements: [
-      "Scalable Architecture Design",
-      "High-Performance APIs",
-    ]
+    category: "LLM FRAMEWORKS", 
+    items: ["LangChain", "LlamaIndex", "OpenAI API", "Hugging Face", "Anthropic Claude"]
   },
   {
-    title: "Development Tools",
-    icon: <FaGitAlt className="text-4xl text-orange-400" />,
-    iconBg: "bg-orange-500/20",
-    experience: "2+ Years",
-    projectCount: "All Projects",
-    expertise: 60,
-    items: [
-      { name: "Git & GitHub", level: 69, projects: 15 },
-      { name: "Docker", level: 61, projects: 2 },
-      { name: "Postman", level: 55, projects: 2 },
-      { name: "Figma", level: 75, projects: 5 },
-    ],
-    achievements: [
-      "CI/CD Pipeline Implementation",
-      "Version Control Best Practices",
-      "API Testing & Documentation"
-    ]
-  }
+    category: "MODELS",
+    items: ["GPT-4", "Claude", "Llama 2", "Mistral", "Gemini" ]
+  },
+  // {
+  //   category: "VECTOR DBS",
+  //   items: ["Pinecone", "Chroma", "Weaviate", "FAISS", "Milvus"]
+  // },
+  {
+    category: "INFRASTRUCTURE",
+    items: ["Docker", "Kubernetes",  "Google Cloud"]
+  },
+ 
 ];
 
-// Removed busy stats/UI to keep the section clean
 
 const SkillsSection = () => {
-  const [activeCard, setActiveCard] = React.useState<number | null>(null);
-  const [hoveredSkill, setHoveredSkill] = React.useState<string | null>(null);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { 
-        staggerChildren: 0.15,
-        delayChildren: 0.3 
-      } 
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0, scale: 0.8 },
-    visible: { 
-      y: 0, 
-      opacity: 1, 
-      scale: 1,
-      transition: { 
-        duration: 0.8, 
-        ease: [0.25, 0.46, 0.45, 0.94] 
-      } 
-    },
-  };
-
-  // width animation handled inline for simplicity
-
   return (
     <section
       id="skills"
-      className="relative w-full py-16 md:py-24 lg:py-28 overflow-hidden bg-black"
+      className="w-full py-16 md:py-24 lg:py-32 bg-[#0a0a0a] text-white relative overflow-hidden"
     >
-      {/* Subtle background */}
-      <Starfield className="pointer-events-none absolute inset-0 -z-10" starCount={300} depth={300} opacity={0.2} parallax={false} />
+    
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}
+      />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header (clean) */}
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">
-            <FaAward className="text-yellow-400" />
-            <span>Skills</span>
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Technical Toolkit - Left aligned with animation */}
+        <div className="mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-left"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              <span className="bg-gradient-to-r from-orange-300 via-red-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
+                TECHNICAL TOOLKIT
+              </span>
+             
+            </h2>
+          </motion.div>
+
+          {/* Skills Categories Grid*/}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+            {skillsData.map((category, categoryIndex) => (
+              <motion.div
+                key={category.category}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  delay: categoryIndex * 0.1, 
+                  duration: 0.6,
+                  ease: "easeOut"
+                }}
+                className="space-y-3"
+              >
+                {/* Category Title - Orange color  */}
+                <h3 className="text-lg font-bold text-orange-400 uppercase tracking-wider">
+                  {category.category}
+                </h3>
+                
+                {/* Skills List */}
+                <div className="space-y-2">
+                  {category.items.map((item, itemIndex) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ 
+                        delay: categoryIndex * 0.1 + itemIndex * 0.05, 
+                        duration: 0.4 
+                      }}
+                      className="text-white text-sm hover:text-gray-300 transition-colors duration-200"
+                    >
+                      {item}
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <h2 className="mt-4 text-3xl md:text-4xl font-bold tracking-tight">Technical Skills</h2>
-          <p className="mt-2 text-sm md:text-base text-gray-400">A concise overview of my core technologies and tools.</p>
         </div>
 
-        {/* Skill Cards - Simplified grid without complex animations */}
-        <div className="mx-auto grid grid-cols-1 gap-8 py-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {skillsData.map((skill, idx) => (
-            <div
-              key={idx}
-              className="h-full group"
-              onMouseEnter={() => setActiveCard(idx)}
-              onMouseLeave={() => setActiveCard(null)}
-            >
-              <Card className="skill-card bg-gradient-to-br from-gray-900/95 to-gray-800/95 border border-white/15 backdrop-blur-xl text-white transition-all duration-300 h-full min-h-[380px] hover:scale-[1.02] hover:border-white/30 relative overflow-hidden">
-                <div className={`absolute inset-0 bg-gradient-to-br ${skill.iconBg.replace('/20', '/5')} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                <CardHeader className="flex items-start gap-4 pb-4 px-6 pt-6 relative z-10">
-                  <div className={`p-4 rounded-xl ${skill.iconBg} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    {skill.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">{skill.title}</h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <span className="flex items-center gap-1">
-                        <FaClock className="text-xs" />
-                        {skill.experience}
-                      </span>
-                      {skill.projectCount && (
-                        <span className="flex items-center gap-1">
-                          <FaProjectDiagram className="text-xs" />
-                          {skill.projectCount}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </CardHeader>
+        {/* Engineering Philosophy - Left aligned with same animation */}
+        <div className="mt-20">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="text-left mb-8"
+          >
+            <h2 className="text-[5px] md:text-xs font-bold tracking-wider uppercase whitespace-nowrap">
+  <span className="bg-gradient-to-r from-orange-300 via-red-500 to-purple-500 bg-clip-text text-transparent">
+    Engineering
+  </span>
+  <span className="text-gray-500 ml-1 from-orange-100 via-red-300 to-purple-400">Philosophy</span>
+</h2>
 
-                <CardContent className="px-6 pb-6 relative z-10">
-                  {/* Expertise Level */}
-                  <div className="mb-6">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-semibold text-gray-300">Expertise Level</span>
-                      <span className="text-sm font-bold text-cyan-400">{skill.expertise}%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                      <motion.div
-                        className={`h-full bg-gradient-to-r ${skill.iconBg.includes('cyan') ? 'from-cyan-500 to-blue-500' : 
-                          skill.iconBg.includes('green') ? 'from-green-500 to-emerald-500' :
-                          skill.iconBg.includes('orange') ? 'from-orange-500 to-red-500' :
-                          'from-cyan-500 to-blue-500'} rounded-full`}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.expertise}%` }}
-                        transition={{ duration: 1.2, delay: idx * 0.1 }}
-                        viewport={{ once: true }}
-                      />
-                    </div>
-                  </div>
+          </motion.div>
 
-                  {/* Skills List */}
-                  <div className="space-y-4">
-                    <h4 className="text-sm font-semibold text-gray-300 mb-3">
-                      {idx === 2 ? "Tools & Platforms" : "Core Technologies"}
-                    </h4>
-                    {skill.items.map((item, i) => (
-                      <motion.div
-                        key={i}
-                        className="skill-item group/skill cursor-default"
-                        onMouseEnter={() => setHoveredSkill(`${idx}-${i}`)}
-                        onMouseLeave={() => setHoveredSkill(null)}
-                        whileHover={{ x: 0 }}
-                      >
-                        <div className="flex justify-between items-center mb-2">
-                          <span className="text-sm font-medium group-hover/skill:text-white transition-colors">
-                            {item.name}
-                          </span>
-                          <span className="text-xs text-gray-400">{item.level}%</span>
-                        </div>
-                        <div className="w-full bg-gray-700 rounded-full h-1.5 overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${skill.iconBg.includes('cyan') ? 'from-cyan-500 to-blue-500' : 
-                              skill.iconBg.includes('green') ? 'from-green-500 to-emerald-500' :
-                              skill.iconBg.includes('orange') ? 'from-orange-500 to-red-500' :
-                          'from-cyan-500 to-blue-500'}`}
-                            initial={{ width: 0, opacity: 0 }}
-                            whileInView={{ width: `${item.level}%`, opacity: 1 }}
-                            transition={{ duration: 1.2 }}
-                            viewport={{ once: true }}
-                          />
-                        </div>
-
-                        {false}
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {false}
-                </CardContent>
-              </Card>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="max-w-4xl"
+          >
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6">
+              What Drives My Engineering Approach ? 
+            </h3>
+            
+            <div className="text-gray-500 space-y-3 text-base leading-relaxed">
+              <p>
+                Every AI-powered system I build follows a modular, backend-first, and evaluation-driven architecture. 
+                My security philosophy is "Zero Trust at the Boundary." I implement strict input validation, least-privilege access for database users, and encrypted-at-rest protocols for sensitive fields.
+              </p>
+              <p>
+                I build backend systems where predictability is a feature and security is an architectural constraint, not a checklist item. My approach centers on high-performance data modeling and modular service design.
+              </p>
+              <p>
+              I build Node.js applications with a "production-first" mindset—prioritizing type safety, database integrity, and asynchronous performance over "clever" shortcuts.
+              </p>
             </div>
-          ))}
+          </motion.div>
         </div>
       </div>
     </section>

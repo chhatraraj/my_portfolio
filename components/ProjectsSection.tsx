@@ -1,8 +1,7 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { motion } from "framer-motion";
 import { HiEye } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 import Starfield from "./Starfield";
 
 interface ProjectInterface {
@@ -17,8 +16,7 @@ interface ProjectInterface {
 
 const ProjectCard: FC<{
   project: ProjectInterface;
-  onImageClick: (image: string, title: string) => void;
-}> = ({ project, onImageClick }) => {
+}> = ({ project }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
@@ -33,7 +31,6 @@ const ProjectCard: FC<{
         {/* Project Image */}
         <div
           className="relative w-full h-53 overflow-hidden cursor-pointer"
-          onClick={() => onImageClick(project.image, project.title)}
         >
           <img
             src={project.image}
@@ -98,8 +95,6 @@ const ProjectCard: FC<{
 };
 
 const ProjectsSection = () => {
-  const handleImageClick = (image: string, title: string) => {};
-
   const projects: ProjectInterface[] = [
     
     
@@ -154,7 +149,6 @@ const ProjectsSection = () => {
             <ProjectCard
               key={project.id}
               project={project}
-              onImageClick={handleImageClick}
             />
           ))}
         </div>

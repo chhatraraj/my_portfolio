@@ -29,8 +29,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
     setThemeState(newTheme);
     try {
       localStorage.setItem('theme', newTheme);
-    } catch (e) {
-      // Handle localStorage errors silently
+    } catch (error) {
+      console.error('Error setting theme in localStorage:', error);
     }
     applyTheme(newTheme);
   };
@@ -43,7 +43,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
       const initialTheme = storedTheme || (prefersDark ? 'dark' : 'light');
       setThemeState(initialTheme);
       applyTheme(initialTheme);
-    } catch (e) {
+    } catch {
       applyTheme('light');
     }
     setMounted(true);
